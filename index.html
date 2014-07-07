@@ -34,13 +34,11 @@
 <!-- // header -->
 
 <!-- main-container -->
-<div id="main-container" class="container-fluid" ng-controller="comicsController">
-    <div class="row">
-        <div class="col-sm-3 col-md-2" ng-repeat="comic in comics">
-            <div class="thumbnail">
-                <img class="img-thumbnail" ng-src="{{comic.thumbnail.path}}/portrait_fantastic.{{comic.thumbnail.extension}}" title="{{comic.title}}">
-            </div>
-        </div>
+<div id="main-container" class="container-fluid">
+    <div class="row" ng-controller="characterController">
+        <h1>{{data.name}}</h1>
+        <img ng-src="{{data.thumbnail.path}}/landscape_incredible.{{data.thumbnail.extension}}">
+        <p ng-show="data.description">{{data.description}}</p>
     </div>
 </div>
 <!-- // main-container -->
