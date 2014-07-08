@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>angularjs-marvel</title>
+    <title>marvel comics api demo with angularjs</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -20,7 +20,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button> -->
-                <a class="navbar-brand" href="#">AngularJS-Marvel</a>
+                <a class="navbar-brand" href="#">marvel comics api demo</a>
             </div>
             <div class="collapse navbar-collapse">
                 <!-- <ul class="nav navbar-nav">
@@ -35,10 +35,15 @@
 
 <!-- main-container -->
 <div id="main-container" class="container-fluid">
+
     <div class="row" ng-controller="characterController">
         <h1>{{data.name}}</h1>
-        <img ng-src="{{data.thumbnail.path}}/landscape_incredible.{{data.thumbnail.extension}}">
+        <div><img ng-src="{{data.thumbnail.path}}/landscape_incredible.{{data.thumbnail.extension}}"></div>
         <p ng-show="data.description">{{data.description}}</p>
+    </div>
+
+    <div class="row" ng-controller="comicsController">
+        <p ng-repeat="comic in data">{{comic.title}}</p>
     </div>
 </div>
 <!-- // main-container -->
