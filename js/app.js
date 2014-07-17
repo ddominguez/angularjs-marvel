@@ -2,7 +2,7 @@
 
 var characterId = 1009313;
 // var characterId = 1009368;
-var app = angular.module('marvelApp', []);
+var app = angular.module('marvelApp', ['ngAnimate']);
 
 app.factory('comicsService', function($rootScope) {
     var comicsService = {};
@@ -47,7 +47,6 @@ app.controller('comicsController', ['$scope', '$http', 'comicsService', function
         }).
         success(function(data, status, headers, config) {
             $scope.data = data.data.results;
-            console.log($scope.data);
         });
     }
 }]);
