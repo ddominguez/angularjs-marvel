@@ -12,7 +12,7 @@
 <body>
 <!-- header -->
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container-fluid">
+        <div class="container">
             <div class="navbar-header">
                 <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -34,16 +34,26 @@
 <!-- // header -->
 
 <!-- main-container -->
-<div id="main-container" class="container-fluid">
+<div id="main-container" class="container">
 
-    <div class="row" ng-controller="characterController">
-        <h1>{{data.name}}</h1>
-        <div><img ng-src="{{data.thumbnail.path}}/landscape_incredible.{{data.thumbnail.extension}}"></div>
-        <p ng-show="data.description">{{data.description}}</p>
+    <div id="character-info" class="row" ng-controller="characterController">
+        <div class="page-header"><h1>{{data.name}}</h1></div>
+        <div ng-show="data.description">
+            <div class="col-md-5">
+                <img class="img-responsive" ng-src="{{data.thumbnail.path}}/landscape_incredible.{{data.thumbnail.extension}}">
+            </div>
+            <div class="col-md-5">
+                <p>{{data.description}}</p>
+            </div>
+        </div>
     </div>
 
-    <div class="row" ng-controller="comicsController">
-        <p ng-repeat="comic in data">{{comic.title}}</p>
+    <div id="character-comics" class="row" ng-controller="comicsController">
+        <div class="col-sm-3 col-md-3" ng-repeat="comic in data">
+            <div class="thumbnail">
+                <img ng-src="{{comic.thumbnail.path}}/portrait_fantastic.{{comic.thumbnail.extension}}" />
+            </div>
+        </div>
     </div>
 </div>
 <!-- // main-container -->

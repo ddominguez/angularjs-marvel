@@ -1,7 +1,11 @@
 #main-container {
-    margin-top: 65px;
+    margin-top: 55px;
 }
 
-.thumbnail {
+#character-info {
+    margin-bottom: 10px;
+}
+
+#character-comics .thumbnail {
     border: none;
 }
