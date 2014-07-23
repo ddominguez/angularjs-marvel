@@ -1,52 +1,29 @@
 'use strict';
 
-var characterId = 1009313;
-// var characterId = 1009368;
-var app = angular.module('marvelApp', ['ngAnimate']);
+var app = angular.module('marvelApp', ['ngAnimate', 'ngResource']);
 
-app.factory('comicsService', function($rootScope) {
-    var comicsService = {};
-    comicsService.comicsURI = '';
+app.controller("characterController", ['$scope', '$resource', function($scope, $resource) {
+    var characters = $resource('http://gateway.marvel.com:80/v1/public/:entity/:id/:collection',
+        {entity:'characters', apikey:MARVEL_API_KEY});
 
-    comicsService.prepForBroadcast = function(uri) {
-        this.comicsURI = uri;
-        this.broadcastItem();
-    };
-
-    comicsService.broadcastItem = function() {
-        $rootScope.$broadcast('handleBroadcast');
-    };
-
-    return comicsService;
-});
-
-app.controller("characterController", ['$scope', '$http', 'comicsService', function($scope, $http, comicsService) {
-    $scope.data = {};
-    $http({
-        method: 'GET',
-        url: 'http://gateway.marvel.com:80/v1/public/characters/'+characterId+'?apikey='+MARVEL_API_KEY
-    }).
-    success(function(data, status, headers, config) {
-        $scope.data = data.data.results[0];
-        comicsService.prepForBroadcast($scope.data.comics.collectionURI);
-    });
-}]);
-
-app.controller('comicsController', ['$scope', '$http', 'comicsService', function($scope, $http, comicsService) {
-    $scope.data = {};
-    $scope.foo = 'foo';
-    $scope.$on('handleBroadcast', function() {
-        $scope.comicsURI = comicsService.comicsURI;
-        $scope.requestComics();
+    // get characters list
+    $scope.charactersResult = characters.get(function() {
+        // get first character id from result
+        var defaultCharacterId = $scope.charactersResult.data.results[0].id;
+        $scope.getCharacterInfo(defaultCharacterId);
     });
 
-    $scope.requestComics = function() {
-        $http({
-            method: 'GET',
-            url: $scope.comicsURI+'?apikey='+MARVEL_API_KEY
-        }).
-        success(function(data, status, headers, config) {
-            $scope.data = data.data.results;
+    $scope.getCharacterInfo = function(id) {
+        var characterInfoResult = characters.get({id: id}, function() {
+            $scope.characterInfo = characterInfoResult.data.results[0];
+            $scope.getCharacterComics(id);
+        });
+    };
+
+    $scope.getCharacterComics = function(id) {
+        var comicsResult = characters.get({id:id, collection:'comics'}, function() {
+            $scope.characterComics = comicsResult.data.results;
+            $scope.comicCount = comicsResult.data.count;
         });
     }
 }]);

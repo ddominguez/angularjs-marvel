@@ -34,25 +34,21 @@
 <!-- // header -->
 
 <!-- main-container -->
-<div id="main-container" class="container">
-
-    <div id="character-info" class="row" ng-controller="characterController">
-        <div class="page-header"><h1>{{data.name}}</h1></div>
-        <div ng-show="data.description">
-            <div class="col-md-5">
-                <img class="img-responsive" ng-src="{{data.thumbnail.path}}/landscape_incredible.{{data.thumbnail.extension}}">
-            </div>
-            <div class="col-md-5">
-                <p>{{data.description}}</p>
+<div id="main-container" class="container" ng-controller="characterController">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="list-group">
+                <a href="javascript:void(0)" ng-click="getCharacterInfo(character.id)" class="list-group-item" ng-repeat="character in charactersResult.data.results">{{character.name}}</a>
             </div>
         </div>
-    </div>
-
-    <div id="character-comics" class="row" ng-controller="comicsController">
-        <div class="comic-item col-sm-3 col-md-3" ng-repeat="comic in data">
-            <div class="thumbnail">
-                <img ng-src="{{comic.thumbnail.path}}/portrait_fantastic.{{comic.thumbnail.extension}}" />
+        <div class="col-sm-8 col-sm-offset-1">
+            <h1>{{characterInfo.name}}</h1>
+            <div class="comic-item col-sm-3" ng-repeat="comic in characterComics">
+                <div class="thumbnail">
+                    <img ng-src="{{comic.thumbnail.path}}/portrait_fantastic.{{comic.thumbnail.extension}}" />
+                </div>
             </div>
+            <p ng-hide="comicCount">Nothing here!</p>
         </div>
     </div>
 </div>
@@ -60,6 +56,7 @@
 
 <script src="bower_components/angular/angular.min.js"></script>
 <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="bower_components/angular-resource/angular-resource.min.js"></script>
 <script src="js/config.js"></script>
 <script src="js/app.js"></script>
 </body>
