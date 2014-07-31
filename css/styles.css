@@ -2,15 +2,6 @@
     margin-top: 55px;
 }
 
-#character-info {
-    margin-bottom: 10px;
-}
-
-#character-comics .thumbnail {
-    border: none;
-}
-
-
 .comic-item.ng-enter {
     -webkit-transition: 0.1s linear all;
     transition: 0.1s linear all;
