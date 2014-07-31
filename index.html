@@ -34,21 +34,25 @@
 <!-- // header -->
 
 <!-- main-container -->
-<div id="main-container" class="container" ng-controller="characterController">
+<div id="main-container" class="container" ng-controller="eventsController">
     <div class="row">
         <div class="col-sm-3">
+            <h1>Events</h1>
             <div class="list-group">
-                <a href="javascript:void(0)" ng-click="getCharacterInfo(character.id)" class="list-group-item" ng-repeat="character in charactersResult.data.results">{{character.name}}</a>
+                <a href="javascript:void(0)" ng-click="getInfo(event.id)" class="list-group-item" ng-repeat="event in eventsResult.data.results">{{event.title}}</a>
             </div>
         </div>
         <div class="col-sm-8 col-sm-offset-1">
-            <h1>{{characterInfo.name}}</h1>
-            <div class="comic-item col-sm-3" ng-repeat="comic in characterComics">
-                <div class="thumbnail">
-                    <img ng-src="{{comic.thumbnail.path}}/portrait_fantastic.{{comic.thumbnail.extension}}" />
+            <h1>{{info.title}}</h1>
+            <div ng-hide="loadingContent">
+                <div class="comic-item col-sm-3" ng-repeat="comic in comics">
+                    <div class="thumbnail">
+                        <img ng-src="{{comic.thumbnail.path}}/portrait_fantastic.{{comic.thumbnail.extension}}" title="{{comic.title}}" />
+                    </div>
                 </div>
             </div>
             <p ng-hide="comicCount">Nothing here!</p>
+            <p ng-show="loadingContent">Loading!</p>
         </div>
     </div>
 </div>
