@@ -1,3 +1,9 @@
+# Requirements
+1. Get Marvel API Key: http://developer.marvel.com/
+2. Install Bower: http://bower.io/#install-bower
+
+
+# Install
 ```
 1. create js/config.js file.
 
