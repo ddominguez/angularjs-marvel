@@ -1,0 +1,24 @@
+{
+  "name": "angularjs-marvel",
+  "version": "0.0.0",
+  "homepage": "https://github.com/ddominguez/angularjs-marvel",
+  "authors": [
+    "David Dominguez <ddominguez@gmail.com>"
+  ],
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-animate": "1.2.18",
+    "angular": "1.2.18",
+    "angular-resource": "1.2.18",
+    "bootstrap": "~3.2.0"
+  }
+}
