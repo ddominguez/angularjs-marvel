@@ -3,3 +3,4 @@
 ```
 var MARVEL_API_KEY = 'YOUR_MARVEL_API_KEY';
 ```
+3. run: bower install
